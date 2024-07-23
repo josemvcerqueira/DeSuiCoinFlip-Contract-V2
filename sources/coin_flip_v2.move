@@ -188,8 +188,8 @@ module desui_labs::coin_flip_v2 {
 
     public entry fun copy_admin_cap_to<T>(
         _: &AdminCap,
-        to: address,
-        ctx: &mut TxContext,
+        _to: address,
+        _ctx: &mut TxContext,
     ) {
         abort ECannotCopyAdminCap
     }
