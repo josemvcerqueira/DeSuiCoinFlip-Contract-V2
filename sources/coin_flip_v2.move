@@ -32,6 +32,7 @@ module desui_labs::coin_flip_v2 {
     const EPoolNotEnough: u64 = 6;
     const EGameNotExists: u64 = 7;
     const EBatchSettleInvalidInputs: u64 = 8;
+    const ECannotCopyAdminCap: u64 = 9;
 
     // --------------- Events ---------------
 
@@ -190,8 +191,14 @@ module desui_labs::coin_flip_v2 {
         to: address,
         ctx: &mut TxContext,
     ) {
-        let admin_cap = AdminCap { id: object::new(ctx)};
-        transfer::transfer(admin_cap, to);
+        abort ECannotCopyAdminCap
+    }
+
+    public entry fun transfer_admin_cap(
+        cap: AdminCap,
+        to: address
+    ) {
+        transfer::transfer(cap, to);
     }
 
     // --------------- Partnership Funtions ---------------
